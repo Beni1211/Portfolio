@@ -3,67 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mein Portfolio</title>
+    <title>Benjamin Gorski - Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Willkommen zu meinem Portfolio</h1>
-        <p>Ich bin [Dein Name], ein(e) [Dein Beruf]</p>
-        <nav>
-            <ul>
-                <li><a href="#about">Über mich</a></li>
-                <li><a href="#projects">Projekte</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Über mich Section -->
-    <section id="about">
-        <h2>Über mich</h2>
-        <p>Hier kannst du etwas über dich selbst schreiben, deine Qualifikationen, Interessen oder Erfahrung.</p>
-    </section>
-
-    <!-- Projekte Section -->
-    <section id="projects">
-        <h2>Projekte</h2>
-        <div class="project">
-            <h3>Projekt 1</h3>
-            <p>Beschreibung des Projekts. Was ist das Ziel, was wurde erreicht?</p>
+    <!-- YouTube-Video-Hintergrund -->
+    <div class="video-container">
+        <!-- Intro-Video -->
+        <div id="introVideo" class="video" style="display: block;">
+            <iframe id="introIframe" width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID1?autoplay=1&mute=1&controls=0&showinfo=0&loop=0&playlist=VIDEO_ID1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <div class="project">
-            <h3>Projekt 2</h3>
-            <p>Beschreibung des Projekts. Was ist das Ziel, was wurde erreicht?</p>
+        <!-- Schleifen-Video -->
+        <div id="loopVideo" class="video" style="display: none;">
+            <iframe id="loopIframe" width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID2?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=VIDEO_ID2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <!-- Weitere Projekte hinzufügen -->
-    </section>
+    </div>
 
-    <!-- Kontakt Section -->
-    <section id="contact">
-        <h2>Kontakt</h2>
-        <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message">Nachricht:</label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <button type="submit">Abschicken</button>
-        </form>
-    </section>
+    <!-- Unsichtbare Buttons für Navigation -->
+    <div class="center-buttons">
+        <a href="portfolio.html" class="button">Portfolio</a>
+        <a href="about.html" class="button">Über mich</a>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2023 [Dein Name]. Alle Rechte vorbehalten.</p>
+        <p>Impressum | Benjamin Gorski</p>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript für Video-Steuerung -->
     <script src="script.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
