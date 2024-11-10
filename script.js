@@ -26,12 +26,15 @@ function onYouTubeIframeAPIReady() {
             'onReady': onLoopPlayerReady
         }
     });
+
+    console.log("YouTube API is ready, players initialized.");
 }
 
 // Event when the loop video is ready
 function onLoopPlayerReady(event) {
     console.log("Loop video is ready");
     loopPlayer.mute();
+    console.log("Loop video is ready and muted.");
 }
 
 // Function to handle the end of the intro video
@@ -52,13 +55,14 @@ function onPlayerStateChange(event) {
             // Hide the loader and start the loop video
             loader.style.display = 'none';
             loopPlayer.playVideo();
+            console.log("Loop video should now be visible.");
         }, 500); // Delay for smooth transition
     }
 }
 
 // Window onload function
 window.onload = function() {
-    console.log("Window loaded");
+    console.log("Window loaded. Setting up initial video state.");
     loopDiv.style.opacity = "0"; // Ensures the loop video loads in the background
 }
 
