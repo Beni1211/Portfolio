@@ -47,7 +47,10 @@ function onLoopPlayerReady(event) {
     console.log("Loop video is ready and muted.");
 }
 
-
+window.onload = function() {
+    introDiv.style.display = "block";  // Ensure intro video is shown initially
+    loopDiv.style.display = "none";    // Ensure loop video is hidden initially
+}
 
 // Show footer when scrolling
 window.onscroll = function() {
