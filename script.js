@@ -22,9 +22,9 @@ function onYouTubeIframeAPIReady() {
 function onPlayerStateChange(event) {
     // Wenn das Intro-Video endet (PlayerState.ENDED)
     if (event.data === YT.PlayerState.ENDED) {
-        // Verstecke das Intro-Video und zeige das Schleifen-Video
-        document.getElementById('introVideo').style.display = "none";
-        document.getElementById('loopVideo').style.display = "block";
+        // Verstecke das Intro-Video mit einer Verzögerung und zeige das Schleifen-Video
+        document.getElementById('introVideo').classList.remove('visible');
+        document.getElementById('loopVideo').classList.add('visible');
         
         // Starte das Schleifen-Video
         loopPlayer.playVideo();
@@ -34,7 +34,10 @@ function onPlayerStateChange(event) {
 // Funktion, wenn der Loop-Player bereit ist (um sicherzustellen, dass alles geladen ist)
 function onLoopPlayerReady(event) {
     loopPlayer.mute(); // Stummschalten des Loop-Videos
+    // Sofort sichtbar machen, um den Übergang zu verbessern
+    document.getElementById('loopVideo').classList.add('visible');
 }
+
 
 
 // Footer sichtbar machen beim Scrollen
