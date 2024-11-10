@@ -18,18 +18,25 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
+window.onload = function() {
+    // Stelle sicher, dass das Loop-Video direkt geladen wird, aber unsichtbar bleibt
+    document.getElementById('loopVideo').style.display = "none";
+    document.getElementById('loopVideo').classList.add('visible');
+}
+
 // Wird aufgerufen, wenn das Intro-Video fertig ist
 function onPlayerStateChange(event) {
     // Wenn das Intro-Video endet (PlayerState.ENDED)
     if (event.data === YT.PlayerState.ENDED) {
-        // Verstecke das Intro-Video mit einer Verzögerung und zeige das Schleifen-Video
-        document.getElementById('introVideo').classList.remove('visible');
-        document.getElementById('loopVideo').classList.add('visible');
+        // Zeige das Loop-Video sofort und starte es
+        document.getElementById('introVideo').style.display = "none";
+        document.getElementById('loopVideo').style.display = "block";
         
         // Starte das Schleifen-Video
         loopPlayer.playVideo();
     }
 }
+
 
 // Funktion, wenn der Loop-Player bereit ist (um sicherzustellen, dass alles geladen ist)
 function onLoopPlayerReady(event) {
