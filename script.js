@@ -1,16 +1,16 @@
-// Globale Variablen für die Player
+// Global variables for the YouTube players
 let introPlayer, loopPlayer;
 
-// Wenn die YouTube iFrame-API bereit ist, wird diese Funktion aufgerufen
+// YouTube IFrame API callback when ready
 function onYouTubeIframeAPIReady() {
-    // Initialisiere den Intro-Player
+    // Initialize the intro video player
     introPlayer = new YT.Player('introIframe', {
         events: {
-            'onStateChange': onPlayerStateChange // Wenn sich der Player-Zustand ändert
+            'onStateChange': onPlayerStateChange
         }
     });
 
-    // Initialisiere den Loop-Player (wird erst sichtbar, wenn das Intro endet)
+    // Initialize the looping video player (initially hidden)
     loopPlayer = new YT.Player('loopIframe', {
         events: {
             'onReady': onLoopPlayerReady
@@ -18,36 +18,30 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
+// On window load, make sure both videos are set up correctly
 window.onload = function() {
-    // Stelle sicher, dass das Loop-Video direkt geladen wird, aber unsichtbar bleibt
-    document.getElementById('loopVideo').style.display = "none";
-    document.getElementById('loopVideo').classList.add('visible');
+    document.getElementById('loopVideo').classList.add('visible'); // Set visible so it can load in the background
 }
 
-// Wird aufgerufen, wenn das Intro-Video fertig ist
+// Detect end of intro video to transition to the loop video
 function onPlayerStateChange(event) {
-    // Wenn das Intro-Video endet (PlayerState.ENDED)
     if (event.data === YT.PlayerState.ENDED) {
-        // Zeige das Loop-Video sofort und starte es
-        document.getElementById('introVideo').style.display = "none";
-        document.getElementById('loopVideo').style.display = "block";
+        // Hide intro video and show loop video
+        document.getElementById('introVideo').classList.remove('visible');
+        document.getElementById('loopVideo').classList.add('visible');
         
-        // Starte das Schleifen-Video
+        // Start playing the loop video
         loopPlayer.playVideo();
     }
 }
 
-
-// Funktion, wenn der Loop-Player bereit ist (um sicherzustellen, dass alles geladen ist)
+// Loop video ready event handler
 function onLoopPlayerReady(event) {
-    loopPlayer.mute(); // Stummschalten des Loop-Videos
-    // Sofort sichtbar machen, um den Übergang zu verbessern
-    document.getElementById('loopVideo').classList.add('visible');
+    loopPlayer.mute(); // Mute the loop video
+    document.getElementById('loopVideo').classList.add('visible'); // Make it visible on load
 }
 
-
-
-// Footer sichtbar machen beim Scrollen
+// Show footer when scrolling down
 window.onscroll = function() {
     const footer = document.querySelector('footer');
     footer.classList.add('visible');
