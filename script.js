@@ -49,8 +49,8 @@ function onPlayerStateChange(event) {
         
         // Hide intro video and show loop video after a slight delay
         setTimeout(() => {
-            introDiv.classList.remove('visible');
-            loopDiv.classList.add('visible');
+            introDiv.style.display = "none"; // Hide intro video
+            loopDiv.style.display = "block"; // Show loop video
             
             // Hide the loader and start the loop video
             loader.style.display = 'none';
@@ -63,7 +63,8 @@ function onPlayerStateChange(event) {
 // Window onload function
 window.onload = function() {
     console.log("Window loaded. Setting up initial video state.");
-    loopDiv.style.opacity = "0"; // Ensures the loop video loads in the background
+    introDiv.style.display = "block"; // Ensure intro video is visible initially
+    loopDiv.style.display = "none"; // Hide loop video initially
 }
 
 // Show footer when scrolling
