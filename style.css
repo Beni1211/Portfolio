@@ -1,19 +1,22 @@
+/* Basic CSS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body, html {
     height: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: black; /* Ensures a dark background */
 }
 
 .video-container {
     position: relative;
     width: 100%;
-    height: 100vh; /* Ensure full viewport height */
+    height: 100%;
+    background-color: black; /* Set to black to check for visibility issues */
 }
 
 .video {
@@ -22,21 +25,14 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; /* Start invisible */
-    transition: opacity 1s ease-in-out;
+    display: none; /* Hidden by default */
+    opacity: 1 !important; /* Force visible for debugging */
+    border: 2px solid red; /* Visible border for debugging */
 }
 
 .video.visible {
-    opacity: 1; /* Visible with smooth transition */
-}
-
-.video iframe {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
+    display: block;
+    opacity: 1; /* Visible when "visible" class is added */
 }
 
 .center-buttons {
@@ -52,9 +48,7 @@ body, html {
     font-size: 2em;
     font-weight: bold;
     text-decoration: none;
-    background: transparent;
     margin: 10px;
-    border: none;
 }
 
 footer {
@@ -65,10 +59,5 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
-    display: none;
     font-size: 0.9em;
-}
-
-footer.visible {
-    display: block;
 }
