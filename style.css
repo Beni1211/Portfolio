@@ -11,26 +11,34 @@ body, html {
     background-color: black; /* Ensures a dark background */
 }
 
-.video-container, .video {
-    position: fixed; /* Fixed to cover the full screen */
+.video-container {
+    position: fixed; /* Fullscreen fixed positioning */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    transition: opacity 0.5s ease;
-    opacity: 0; /* Start hidden */
-    z-index: -1; /* Ensures it's behind other content until visible */
+    z-index: 0; /* Ensures video is at the bottom */
 }
 
-.video-container .video.visible {
-    opacity: 1; /* Make it visible */
-    z-index: 1; /* Bring it to the front */
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.video.visible {
+    opacity: 1;  /* Make the video visible */
 }
 
 .video iframe {
-    width: 100%;
-    height: 100%;
+    width: 100%;  /* Full width of the video container */
+    height: 100%; /* Full height of the video container */
     border: none;
     position: absolute;
     top: 0;
@@ -43,6 +51,7 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 1;  /* Ensure buttons appear above the video */
 }
 
 .button {
@@ -62,4 +71,5 @@ footer {
     text-align: center;
     padding: 10px;
     font-size: 0.9em;
+    z-index: 1; /* Ensure footer is above video */
 }
