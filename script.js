@@ -2,12 +2,6 @@
 let introPlayer, loopPlayer;
 const introDiv = document.getElementById('introVideo');
 const loopDiv = document.getElementById('loopVideo');
-const loader = document.createElement('div'); // Loader element
-
-// Style the loader (basic spinner)
-loader.innerHTML = '<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em; color: white;">Loading...</div>';
-document.body.appendChild(loader);
-loader.style.display = 'none';
 
 // YouTube IFrame API callback
 function onYouTubeIframeAPIReady() {
@@ -30,34 +24,26 @@ function onYouTubeIframeAPIReady() {
     console.log("YouTube API is ready, players initialized.");
 }
 
-// Event when the loop video is ready
-function onLoopPlayerReady(event) {
-    console.log("Loop video is ready");
-    loopPlayer.mute();
-    console.log("Loop video is ready and muted.");
+
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        // When intro video ends, switch to loop video
+        introDiv.style.opacity = 0; // Fade out intro
+        setTimeout(() => {
+            introDiv.style.display = "none";
+            loopDiv.style.display = "block";
+            loopDiv.style.opacity = 1; // Fade in loop
+            loopPlayer.playVideo();
+        }, 500); // Delay for transition effect
+    }
 }
 
-// Function to handle the end of the intro video
-function onPlayerStateChange(event) {
-    console.log("Intro video state change:", event.data);
 
-    if (event.data === YT.PlayerState.ENDED) {
-        console.log("Intro video ended. Switching to loop video.");
-
-        // Display loader during the switch
-        loader.style.display = 'block';
-        
-        // Hide intro video and show loop video after a slight delay
-        setTimeout(() => {
-            introDiv.style.display = "none"; // Hide intro video
-            loopDiv.style.display = "block"; // Show loop video
-            
-            // Hide the loader and start the loop video
-            loader.style.display = 'none';
-            loopPlayer.playVideo();
-            console.log("Loop video should now be visible.");
-        }, 500); // Delay for smooth transition
-    }
+// Event when the loop video is ready
+function onLoopPlayerReady(event) {
+    loopPlayer.mute();
+    console.log("Loop video is ready and muted.");
 }
 
 // Window onload function
