@@ -31,13 +31,14 @@ function onPlayerStateChange(event) {
         // When intro video ends, switch to loop video
         introDiv.style.opacity = 0; // Fade out intro
         setTimeout(() => {
-            introDiv.style.display = "none";
-            loopDiv.style.display = "block";
-            loopDiv.style.opacity = 1; // Fade in loop
+            introDiv.style.display = "none"; // Hide intro
+            loopDiv.style.display = "block"; // Show loop video
+            loopDiv.style.opacity = 1; // Fade in loop video
             loopPlayer.playVideo();
-        }, 500); // Delay for transition effect
+        }, 500); // Delay to allow fade transition
     }
 }
+
 
 
 // Event when the loop video is ready
